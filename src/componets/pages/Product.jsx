@@ -16,6 +16,10 @@ import { CartContext } from '../context/MainContextFile';
 import { ToastContainer, toast } from 'react-toastify';
 import Swal from 'sweetalert2'
 import 'sweetalert2/src/sweetalert2.scss'
+import { FaFilter } from "react-icons/fa";
+import { RxCross2 } from "react-icons/rx";
+import { MdFilterAlt } from "react-icons/md";
+import { MdFilterAltOff } from "react-icons/md";
 
 
 export default function Product() {
@@ -35,6 +39,8 @@ export default function Product() {
 
   let [loading, setLoading] = useState(false)
 
+  let [selectCategory, setSelectCategory] = useState(false)
+console.log(selectCategory);
   // FAQ
   let [categorie, setCategorie] = useState(0)
 
@@ -159,6 +165,9 @@ export default function Product() {
     }
   }
 
+  
+  
+
   return (
     <>
 
@@ -166,27 +175,180 @@ export default function Product() {
 
         <ToastContainer />
 
-        <div className='flex justify-between items-center pt-[90px] pb-[20px] border-b-[1px] border-[#ccc]'>
+        <div className='sm:flex justify-between items-center pt-[90px] pb-[20px] border-b-[1px] border-[#ccc]'>
           <h1 className='font-bold text-4xl'>New Arrivals</h1>
-          <div className=''>
-            <select name="" id="" onChange={(e) => {
-              setSorting(e.target.value)
-            }}>
-              <option value="">Short</option>
-              <option value="1">Name : A to Z</option>
-              <option value="2">Name : Z to A</option>
-              <option value="3">Price : Low to High</option>
-              <option value="4">Price : High to Low</option>
-              <option value="5">Discounted Price: Low to High</option>
-              <option value="6">Discounted Price: High to Low</option>
-            </select>
 
-            {/* <p className='flex items-center'>Sort <span className='text-gray-500 ms-2'><FaAngleDown /></span> </p> */}
+          <div className='flex md:gap-5 gap-10 items-center md:mt-0 mt-5'>
+            
+            <div className=''>
+              <select name="" id="" onChange={(e) => {
+                setSorting(e.target.value)
+              }}>
+                <option value="">Short</option>
+                <option value="1">Name : A to Z</option>
+                <option value="2">Name : Z to A</option>
+                <option value="3">Price : Low to High</option>
+                <option value="4">Price : High to Low</option>
+                <option value="5">Discounted Price: Low to High</option>
+                <option value="6">Discounted Price: High to Low</option>
+              </select>
+
+              {/* <p className='flex items-center'>Sort <span className='text-gray-500 ms-2'><FaAngleDown /></span> </p> */}
+            </div>
+
+              <div className=' relative ms-5'>
+                {
+                  selectCategory ? 
+
+                  <button onClick={()=>setSelectCategory(false)}>
+                    <MdFilterAltOff />
+                  </button>
+                  :
+                  <button onClick={()=>setSelectCategory(true)}>
+                    <MdFilterAlt />
+                  </button>
+                }
+                
+                
+
+              <div className={`absolute top-[100%] right-0 w-[250px] bg-white border-2 rounded-[15px] border-[#ccc] p-5 z-30 md:hidden inline origin-top  ${selectCategory ? "scale-y-100" : "scale-y-0"}`}>
+                
+                
+
+                <div className='py-5 border-b-[1px] border-[#ccc]'>
+                  <h2 id='1' onClick={() => setCategorie(1 == categorie ? 0 : 1)} className='relative font-semibold cursor-pointer'>Categories <span className='absolute right-2 bottom-0 text-gray-500'> {1 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
+
+                  <div className={`text-gray-500 ${1 == categorie ? '' : 'hidden'} `}>
+
+                    {
+                      category.map((obj, index) => {
+                        return (
+                          <li key={index} className='list-none mt-4 '>
+                            <input onChange={getCheckCategoryValue} type='checkbox' value={obj.slug} className='me-1'
+                              checked={categoryfilter.includes(obj.slug)}
+                            />  {obj.name}
+                          </li>
+                        )
+                      })
+                    }
+
+
+                  </div>
+
+
+                </div>
+                <div className='py-5 border-b-[1px] border-[#ccc]'>
+                  <h2 id='2' onClick={() => setCategorie(2 == categorie ? 0 : 2)} className='relative font-semibold cursor-pointer'>Brands <span className='absolute right-2 bottom-0 text-gray-500'> {2 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
+
+                  <div className={`text-gray-500 ${2 == categorie ? '' : 'hidden'} `}>
+
+                    {
+                      brand.map((obj, index) => {
+                        return (
+                          <li key={index} className='list-none mt-4 '>
+                            <input onChange={getCheckBrandValue} type='checkbox' className='me-1' value={obj.slug} /> {obj.name}
+                          </li>
+                        )
+                      })
+                    }
+
+
+
+
+                  </div>
+                </div>
+                <div className='py-5 border-b-[1px] border-[#ccc]'>
+                  <h2 id='3' onClick={() => setCategorie(3 == categorie ? 0 : 3)} className='relative font-semibold cursor-pointer'>Price <span className='absolute right-2 bottom-0 text-gray-500'> {3 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
+
+                  <div className={`text-gray-500 ${3 == categorie ? '' : 'hidden'} `}>
+
+                    <li onClick={() => setPriceFilter([0, 500])} className='list-none mt-4' >
+                      <input type='radio' name='price' className='me-1' />Rs.0 - Rs.500
+                    </li>
+
+                    <li onClick={() => setPriceFilter([501, 1000])} className='list-none mt-4 ' >
+                      <input type='radio' name='price' className='me-1' /> Rs.501 - Rs.1000
+                    </li>
+
+                    <li onClick={() => setPriceFilter([1001, 1500])} className='list-none mt-4 '>
+                      <input type='radio' name='price' className='me-1' />Rs.1001 - Rs.1500
+                    </li>
+
+                    <li onClick={() => setPriceFilter([1501, 2500])} className='list-none mt-4 '>
+                      <input type='radio' name='price' className='me-1' />Rs.1501 - Rs.2500
+                    </li>
+
+                    <li onClick={() => setPriceFilter([2501, 10000000000])} className='list-none mt-4 '>
+                      <input type='radio' name='price' className='me-1' />Rs.2501 and more
+                    </li>
+
+                  </div>
+                </div>
+
+                <div className='py-5 border-b-[1px] border-[#ccc]'>
+                  <h2 id='4' onClick={() => setCategorie(4 == categorie ? 0 : 4)} className='relative font-semibold cursor-pointer'>Discounted Price
+
+                    <span className='absolute right-2 bottom-0 text-gray-500'> {4 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
+
+                  <div className={`text-gray-500 ${4 == categorie ? '' : 'hidden'} `}>
+                    <li onClick={() => setDiscountFilter([0, 20])} className='list-none mt-4 '>
+                      <input type='radio' name='discount' className='me-1' />0% - 20%
+                    </li>
+
+                    <li onClick={() => setDiscountFilter([21, 40])} className='list-none mt-4 ' >
+                      <input type='radio' name='discount' className='me-1' /> 21% - 40%
+                    </li>
+
+                    <li onClick={() => setDiscountFilter([41, 60])} className='list-none mt-4 '>
+                      <input type='radio' name='discount' className='me-1' />41% -60%
+                    </li>
+
+                    <li onClick={() => setDiscountFilter([61, 80])} className='list-none mt-4 '>
+                      <input type='radio' name='discount' className='me-1' />61% - 80%
+                    </li>
+
+                    <li onClick={() => setDiscountFilter([81, 100])} className='list-none mt-4 '>
+                      <input type='radio' name='discount' className='me-1' />81% - 100%
+                    </li>
+
+                  </div>
+                </div>
+                <div className='py-5 border-b-[1px] border-[#ccc]'>
+                  <h2 id='5' onClick={() => setCategorie(5 == categorie ? 0 : 5)} className='relative font-semibold cursor-pointer'>Rating
+                    <span className='absolute right-2 bottom-0 text-gray-500'> {5 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
+
+                  <div className={`text-gray-500 ${5 == categorie ? '' : 'hidden'} `}>
+                    <li onClick={() => setRatingFilter(1)} className='list-none mt-4 '>
+                      <input type='checkbox' className='me-1' />1 and more
+                    </li>
+
+                    <li onClick={() => setRatingFilter(2)} className='list-none mt-4 ' >
+                      <input type='checkbox' className='me-1' /> 2 and more
+                    </li>
+
+                    <li onClick={() => setRatingFilter(3)} className='list-none mt-4 '>
+                      <input type='checkbox' className='me-1' />3 and more
+                    </li>
+
+                    <li onClick={() => setRatingFilter(4)} className='list-none mt-4 '>
+                      <input type='checkbox' className='me-1' />4 and more
+                    </li>
+
+                    <li onClick={() => setRatingFilter(5)} className='list-none mt-4 '>
+                      <input type='checkbox' className='me-1' />5 and more
+                    </li>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <div className='flex  pt-5'>
-          <div className='w-[30%] me-[40px]'>
+        <div className='flex   pt-5'>
+          <div className='md:inline hidden w-[30%] me-[40px]'>
 
             <div className='py-5 border-b-[1px] border-[#ccc]'>
               <h2 id='1' onClick={() => setCategorie(1 == categorie ? 0 : 1)} className='relative font-semibold cursor-pointer'>Categories <span className='absolute right-2 bottom-0 text-gray-500'> {1 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
@@ -397,7 +559,7 @@ let Items = ({ data }) => {
     }).then((result) => {
       if (result.isConfirmed) {
 
-        let finalCart = cart.filter((obj)=> obj.id != id)
+        let finalCart = cart.filter((obj) => obj.id != id)
 
         setCart(finalCart)
 
