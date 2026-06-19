@@ -13,7 +13,7 @@ export default function Home() {
               <p className='mt-4'>Welcome to Bagtesh Fashion Buy Indian Men's Ethnic suits, Tuxedos, Sherwanis, Nehru jacket, Jodhpurs pants, Blazers, Shirts and much more.</p>
           </div>
           <div className='grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-12 mt-5 mb-6 '>
-              <div className='bg-white w-72 mx-auto rounded-[10px] shadow-md hover:shadow-2xl duration-500 hover:scale-105 p-4' >
+              <div className='bg-white w-full max-w-[290px] mx-auto rounded-[10px] shadow-md hover:shadow-2xl transition-all duration-300 hover:scale-[1.03] p-4 flex flex-col justify-between' >
                       <img src="/images/imgi_51_thumbnail.png" alt="" className='w-full h-[200px] object-contain' />
                       <p className='text-body mt-2'>Brand :Off WhiteCategory : Mens Shoes</p>
                       <h3 className='text-[18px] font-bold mt-2'>Sports Sneakers Off White Red... </h3>
@@ -24,7 +24,7 @@ export default function Home() {
                       </div>
                   
               </div>
-              <div className='bg-white w-72 mx-auto rounded-[10px] shadow-md hover:shadow-2xl duration-500 hover:scale-105 p-4' >
+              <div className='bg-white w-full max-w-[290px] mx-auto rounded-[10px] shadow-md hover:shadow-2xl transition-all duration-300 hover:scale-[1.03] p-4 flex flex-col justify-between' >
                       <img src="/images/imgi_211_thumbnail.png" alt="" className='w-full h-[200px] object-contain' />
                       <p className='text-body mt-2'>Brand :Off WhiteCategory : Mens Shoes</p>
                       <h3 className='text-[18px] font-bold mt-2'>Sports Sneakers Off White Red... </h3>
@@ -35,7 +35,7 @@ export default function Home() {
                       </div>
                   
               </div>
-              <div className='bg-white w-72 mx-auto rounded-[10px] shadow-md hover:shadow-2xl duration-500 hover:scale-105 p-4' >
+              <div className='bg-white w-full max-w-[290px] mx-auto rounded-[10px] shadow-md hover:shadow-2xl transition-all duration-300 hover:scale-[1.03] p-4 flex flex-col justify-between' >
                       <img src="/images/imgi_31_thumbnail.png" alt="" className='w-full h-[200px] object-contain' />
                       <p className='text-body mt-2'>Brand :PumaCategory : Mens Shoes</p>
                       <h3 className='text-[18px] font-bold mt-2'>Puma Future Rider Trainers... </h3>
@@ -46,7 +46,7 @@ export default function Home() {
                       </div>
                   
               </div>
-              <div className='bg-white w-72 mx-auto rounded-[10px] shadow-md hover:shadow-2xl duration-500 hover:scale-105 p-4' >
+              <div className='bg-white w-full max-w-[290px] mx-auto rounded-[10px] shadow-md hover:shadow-2xl transition-all duration-300 hover:scale-[1.03] p-4 flex flex-col justify-between' >
                       <img src="/images/imgi_41_thumbnail.png" alt="" className='w-full h-[200px] object-contain' />
                       <p className='text-body mt-2'>Brand :Nike    Category : Mens Shoes</p>
                       <h3 className='text-[18px] font-bold mt-2'>Nike Baseball Cleats... </h3>
@@ -66,7 +66,7 @@ export default function Home() {
               <p className='mt-4'>Beautiful collection of Lehenga cholis, Sarees, Salwar suits for engagement, wedding and other ethnic occasions.</p>
           </div>
           <div className='grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-12 mt-5 mb-6 '>
-              <div className='bg-white w-72 mx-auto rounded-[10px] shadow-md hover:shadow-2xl duration-500 hover:scale-105 p-4' >
+              <div className='bg-white w-full max-w-[290px] mx-auto rounded-[10px] shadow-md hover:shadow-2xl transition-all duration-300 hover:scale-[1.03] p-4 flex flex-col justify-between' >
                       <img src="/images/imgi_611_thumbnail.png" alt="" className='w-full h-[200px] object-contain' />
                       <p className='text-body mt-2'>Brand :N/ACategory : Tops</p>
                       <h3 className='text-[18px] font-bold mt-2'>Tartan Dress </h3>
@@ -77,7 +77,7 @@ export default function Home() {
                       </div>
                   
               </div>
-              <div className='bg-white w-72 mx-auto rounded-[10px] shadow-md hover:shadow-2xl duration-500 hover:scale-105 p-4' >
+              <div className='bg-white w-full max-w-[290px] mx-auto rounded-[10px] shadow-md hover:shadow-2xl transition-all duration-300 hover:scale-[1.03] p-4 flex flex-col justify-between' >
                       <img src="/images/imgi_7_thumbnail.png" alt="" className='w-full h-[200px] object-contain' />
                       <p className='text-body mt-2'>Brand :N/ACategory : Tops</p>
                       <h3 className='text-[18px] font-bold mt-2'>Short Frock</h3>
@@ -88,7 +88,7 @@ export default function Home() {
                       </div>
                   
               </div>
-              <div className='bg-white w-72 mx-auto rounded-[10px] shadow-md hover:shadow-2xl duration-500 hover:scale-105 p-4' >
+              <div className='bg-white w-full max-w-[290px] mx-auto rounded-[10px] shadow-md hover:shadow-2xl transition-all duration-300 hover:scale-[1.03] p-4 flex flex-col justify-between' >
                       <img src="/images/imgi_8_thumbnail.png" alt="" className='w-full h-[200px] object-contain' />
                       <p className='text-body mt-2'>Brand :N/ACategory : Tops</p>
                       <h3 className='text-[18px] font-bold mt-2'>Gray Dress </h3>
@@ -99,7 +99,7 @@ export default function Home() {
                       </div>
                   
               </div>
-              <div className='bg-white w-72 mx-auto rounded-[10px] shadow-md hover:shadow-2xl duration-500 hover:scale-105 p-4' >
+              <div className='bg-white w-full max-w-[290px] mx-auto rounded-[10px] shadow-md hover:shadow-2xl transition-all duration-300 hover:scale-[1.03] p-4 flex flex-col justify-between' >
                       <img src="/images/imgi_9_thumbnail.png" alt="" className='w-full h-[200px] object-contain' />
                       <p className='text-body mt-2'>Brand :N/ACategory : Tops</p>
                       <h3 className='text-[18px] font-bold mt-2'>Girl Summer Dress </h3>

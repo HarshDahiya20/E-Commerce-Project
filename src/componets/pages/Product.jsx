@@ -196,159 +196,144 @@ console.log(selectCategory);
               {/* <p className='flex items-center'>Sort <span className='text-gray-500 ms-2'><FaAngleDown /></span> </p> */}
             </div>
 
-              <div className=' relative ms-5'>
+              <div className='ms-5'>
                 {
                   selectCategory ? 
 
-                  <button onClick={()=>setSelectCategory(false)}>
+                  <button className="text-xl cursor-pointer p-1 text-blue-600 hover:text-blue-800" onClick={()=>setSelectCategory(false)}>
                     <MdFilterAltOff />
                   </button>
                   :
-                  <button onClick={()=>setSelectCategory(true)}>
+                  <button className="text-xl cursor-pointer p-1 text-gray-700 hover:text-black" onClick={()=>setSelectCategory(true)}>
                     <MdFilterAlt />
                   </button>
                 }
                 
-                
+                {/* Backdrop overlay for mobile filters drawer */}
+                {selectCategory && (
+                  <div
+                    onClick={() => setSelectCategory(false)}
+                    className="fixed inset-0 bg-black/60 z-40 md:hidden transition-opacity duration-300"
+                  />
+                )}
 
-              <div className={`absolute top-[100%] right-0 w-[250px] bg-white border-2 rounded-[15px] border-[#ccc] p-5 z-30 md:hidden inline origin-top  ${selectCategory ? "scale-y-100" : "scale-y-0"}`}>
-                
-                
-
-                <div className='py-5 border-b-[1px] border-[#ccc]'>
-                  <h2 id='1' onClick={() => setCategorie(1 == categorie ? 0 : 1)} className='relative font-semibold cursor-pointer'>Categories <span className='absolute right-2 bottom-0 text-gray-500'> {1 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
-
-                  <div className={`text-gray-500 ${1 == categorie ? '' : 'hidden'} `}>
-
-                    {
-                      category.map((obj, index) => {
-                        return (
-                          <li key={index} className='list-none mt-4 '>
-                            <input onChange={getCheckCategoryValue} type='checkbox' value={obj.slug} className='me-1'
-                              checked={categoryfilter.includes(obj.slug)}
-                            />  {obj.name}
-                          </li>
-                        )
-                      })
-                    }
-
-
+                <div className={`fixed top-0 right-0 h-full w-[290px] bg-white p-6 z-50 md:hidden flex flex-col shadow-2xl transition-transform duration-300 ease-in-out origin-right ${selectCategory ? "translate-x-0" : "translate-x-full"}`}>
+                  <div className="flex justify-between items-center pb-4 border-b border-gray-200 mb-4">
+                    <h3 className="font-bold text-xl text-gray-900">Filters</h3>
+                    <button onClick={() => setSelectCategory(false)} className="text-2xl text-gray-500 hover:text-black cursor-pointer p-1">
+                      <RxCross2 />
+                    </button>
                   </div>
+                  
+                  <div className="overflow-y-auto flex-1 pr-1 text-left">
+                    <div className='py-4 border-b border-gray-200'>
+                      <h2 id='1' onClick={() => setCategorie(1 == categorie ? 0 : 1)} className='relative font-semibold cursor-pointer text-gray-900'>Categories <span className='absolute right-2 bottom-1 text-gray-500 text-sm'> {1 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
 
+                      <div className={`text-gray-500 pl-1 ${1 == categorie ? '' : 'hidden'} `}>
+                        {
+                          category.map((obj, index) => {
+                            return (
+                              <li key={index} className='list-none mt-3 flex items-center'>
+                                <input onChange={getCheckCategoryValue} type='checkbox' value={obj.slug} className='me-2 cursor-pointer'
+                                  checked={categoryfilter.includes(obj.slug)}
+                                />  <span className="text-[15px]">{obj.name}</span>
+                              </li>
+                            )
+                          })
+                        }
+                      </div>
+                    </div>
 
-                </div>
-                <div className='py-5 border-b-[1px] border-[#ccc]'>
-                  <h2 id='2' onClick={() => setCategorie(2 == categorie ? 0 : 2)} className='relative font-semibold cursor-pointer'>Brands <span className='absolute right-2 bottom-0 text-gray-500'> {2 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
+                    <div className='py-4 border-b border-gray-200'>
+                      <h2 id='2' onClick={() => setCategorie(2 == categorie ? 0 : 2)} className='relative font-semibold cursor-pointer text-gray-900'>Brands <span className='absolute right-2 bottom-1 text-gray-500 text-sm'> {2 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
 
-                  <div className={`text-gray-500 ${2 == categorie ? '' : 'hidden'} `}>
+                      <div className={`text-gray-500 pl-1 ${2 == categorie ? '' : 'hidden'} `}>
+                        {
+                          brand.map((obj, index) => {
+                            return (
+                              <li key={index} className='list-none mt-3 flex items-center'>
+                                <input onChange={getCheckBrandValue} type='checkbox' className='me-2 cursor-pointer' value={obj.slug} /> <span className="text-[15px]">{obj.name}</span>
+                              </li>
+                            )
+                          })
+                        }
+                      </div>
+                    </div>
 
-                    {
-                      brand.map((obj, index) => {
-                        return (
-                          <li key={index} className='list-none mt-4 '>
-                            <input onChange={getCheckBrandValue} type='checkbox' className='me-1' value={obj.slug} /> {obj.name}
-                          </li>
-                        )
-                      })
-                    }
+                    <div className='py-4 border-b border-gray-200'>
+                      <h2 id='3' onClick={() => setCategorie(3 == categorie ? 0 : 3)} className='relative font-semibold cursor-pointer text-gray-900'>Price <span className='absolute right-2 bottom-1 text-gray-500 text-sm'> {3 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
 
+                      <div className={`text-gray-500 pl-1 ${3 == categorie ? '' : 'hidden'} `}>
+                        <li onClick={() => setPriceFilter([0, 500])} className='list-none mt-3 flex items-center cursor-pointer' >
+                          <input type='radio' name='price' className='me-2 cursor-pointer' /> <span className="text-[15px]">Rs.0 - Rs.500</span>
+                        </li>
+                        <li onClick={() => setPriceFilter([501, 1000])} className='list-none mt-3 flex items-center cursor-pointer' >
+                          <input type='radio' name='price' className='me-2 cursor-pointer' /> <span className="text-[15px]">Rs.501 - Rs.1000</span>
+                        </li>
+                        <li onClick={() => setPriceFilter([1001, 1500])} className='list-none mt-3 flex items-center cursor-pointer'>
+                          <input type='radio' name='price' className='me-2 cursor-pointer' /> <span className="text-[15px]">Rs.1001 - Rs.1500</span>
+                        </li>
+                        <li onClick={() => setPriceFilter([1501, 2500])} className='list-none mt-3 flex items-center cursor-pointer'>
+                          <input type='radio' name='price' className='me-2 cursor-pointer' /> <span className="text-[15px]">Rs.1501 - Rs.2500</span>
+                        </li>
+                        <li onClick={() => setPriceFilter([2501, 10000000000])} className='list-none mt-3 flex items-center cursor-pointer'>
+                          <input type='radio' name='price' className='me-2 cursor-pointer' /> <span className="text-[15px]">Rs.2501 and more</span>
+                        </li>
+                      </div>
+                    </div>
 
+                    <div className='py-4 border-b border-gray-200'>
+                      <h2 id='4' onClick={() => setCategorie(4 == categorie ? 0 : 4)} className='relative font-semibold cursor-pointer text-gray-900'>Discounted Price <span className='absolute right-2 bottom-1 text-gray-500 text-sm'> {4 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
 
+                      <div className={`text-gray-500 pl-1 ${4 == categorie ? '' : 'hidden'} `}>
+                        <li onClick={() => setDiscountFilter([0, 20])} className='list-none mt-3 flex items-center cursor-pointer'>
+                          <input type='radio' name='discount' className='me-2 cursor-pointer' /> <span className="text-[15px]">0% - 20%</span>
+                        </li>
+                        <li onClick={() => setDiscountFilter([21, 40])} className='list-none mt-3 flex items-center cursor-pointer' >
+                          <input type='radio' name='discount' className='me-2 cursor-pointer' /> <span className="text-[15px]">21% - 40%</span>
+                        </li>
+                        <li onClick={() => setDiscountFilter([41, 60])} className='list-none mt-3 flex items-center cursor-pointer'>
+                          <input type='radio' name='discount' className='me-2 cursor-pointer' /> <span className="text-[15px]">41% - 60%</span>
+                        </li>
+                        <li onClick={() => setDiscountFilter([61, 80])} className='list-none mt-3 flex items-center cursor-pointer'>
+                          <input type='radio' name='discount' className='me-2 cursor-pointer' /> <span className="text-[15px]">61% - 80%</span>
+                        </li>
+                        <li onClick={() => setDiscountFilter([81, 100])} className='list-none mt-3 flex items-center cursor-pointer'>
+                          <input type='radio' name='discount' className='me-2 cursor-pointer' /> <span className="text-[15px]">81% - 100%</span>
+                        </li>
+                      </div>
+                    </div>
 
-                  </div>
-                </div>
-                <div className='py-5 border-b-[1px] border-[#ccc]'>
-                  <h2 id='3' onClick={() => setCategorie(3 == categorie ? 0 : 3)} className='relative font-semibold cursor-pointer'>Price <span className='absolute right-2 bottom-0 text-gray-500'> {3 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
+                    <div className='py-4 border-b border-gray-200'>
+                      <h2 id='5' onClick={() => setCategorie(5 == categorie ? 0 : 5)} className='relative font-semibold cursor-pointer text-gray-900'>Rating <span className='absolute right-2 bottom-1 text-gray-500 text-sm'> {5 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
 
-                  <div className={`text-gray-500 ${3 == categorie ? '' : 'hidden'} `}>
-
-                    <li onClick={() => setPriceFilter([0, 500])} className='list-none mt-4' >
-                      <input type='radio' name='price' className='me-1' />Rs.0 - Rs.500
-                    </li>
-
-                    <li onClick={() => setPriceFilter([501, 1000])} className='list-none mt-4 ' >
-                      <input type='radio' name='price' className='me-1' /> Rs.501 - Rs.1000
-                    </li>
-
-                    <li onClick={() => setPriceFilter([1001, 1500])} className='list-none mt-4 '>
-                      <input type='radio' name='price' className='me-1' />Rs.1001 - Rs.1500
-                    </li>
-
-                    <li onClick={() => setPriceFilter([1501, 2500])} className='list-none mt-4 '>
-                      <input type='radio' name='price' className='me-1' />Rs.1501 - Rs.2500
-                    </li>
-
-                    <li onClick={() => setPriceFilter([2501, 10000000000])} className='list-none mt-4 '>
-                      <input type='radio' name='price' className='me-1' />Rs.2501 and more
-                    </li>
-
-                  </div>
-                </div>
-
-                <div className='py-5 border-b-[1px] border-[#ccc]'>
-                  <h2 id='4' onClick={() => setCategorie(4 == categorie ? 0 : 4)} className='relative font-semibold cursor-pointer'>Discounted Price
-
-                    <span className='absolute right-2 bottom-0 text-gray-500'> {4 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
-
-                  <div className={`text-gray-500 ${4 == categorie ? '' : 'hidden'} `}>
-                    <li onClick={() => setDiscountFilter([0, 20])} className='list-none mt-4 '>
-                      <input type='radio' name='discount' className='me-1' />0% - 20%
-                    </li>
-
-                    <li onClick={() => setDiscountFilter([21, 40])} className='list-none mt-4 ' >
-                      <input type='radio' name='discount' className='me-1' /> 21% - 40%
-                    </li>
-
-                    <li onClick={() => setDiscountFilter([41, 60])} className='list-none mt-4 '>
-                      <input type='radio' name='discount' className='me-1' />41% -60%
-                    </li>
-
-                    <li onClick={() => setDiscountFilter([61, 80])} className='list-none mt-4 '>
-                      <input type='radio' name='discount' className='me-1' />61% - 80%
-                    </li>
-
-                    <li onClick={() => setDiscountFilter([81, 100])} className='list-none mt-4 '>
-                      <input type='radio' name='discount' className='me-1' />81% - 100%
-                    </li>
-
-                  </div>
-                </div>
-                <div className='py-5 border-b-[1px] border-[#ccc]'>
-                  <h2 id='5' onClick={() => setCategorie(5 == categorie ? 0 : 5)} className='relative font-semibold cursor-pointer'>Rating
-                    <span className='absolute right-2 bottom-0 text-gray-500'> {5 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
-
-                  <div className={`text-gray-500 ${5 == categorie ? '' : 'hidden'} `}>
-                    <li onClick={() => setRatingFilter(1)} className='list-none mt-4 '>
-                      <input type='checkbox' className='me-1' />1 and more
-                    </li>
-
-                    <li onClick={() => setRatingFilter(2)} className='list-none mt-4 ' >
-                      <input type='checkbox' className='me-1' /> 2 and more
-                    </li>
-
-                    <li onClick={() => setRatingFilter(3)} className='list-none mt-4 '>
-                      <input type='checkbox' className='me-1' />3 and more
-                    </li>
-
-                    <li onClick={() => setRatingFilter(4)} className='list-none mt-4 '>
-                      <input type='checkbox' className='me-1' />4 and more
-                    </li>
-
-                    <li onClick={() => setRatingFilter(5)} className='list-none mt-4 '>
-                      <input type='checkbox' className='me-1' />5 and more
-                    </li>
-
+                      <div className={`text-gray-500 pl-1 ${5 == categorie ? '' : 'hidden'} `}>
+                        <li onClick={() => setRatingFilter(1)} className='list-none mt-3 flex items-center cursor-pointer'>
+                          <input type='checkbox' className='me-2 cursor-pointer' /> <span className="text-[15px]">1 and more</span>
+                        </li>
+                        <li onClick={() => setRatingFilter(2)} className='list-none mt-3 flex items-center cursor-pointer' >
+                          <input type='checkbox' className='me-2 cursor-pointer' /> <span className="text-[15px]">2 and more</span>
+                        </li>
+                        <li onClick={() => setRatingFilter(3)} className='list-none mt-3 flex items-center cursor-pointer'>
+                          <input type='checkbox' className='me-2 cursor-pointer' /> <span className="text-[15px]">3 and more</span>
+                        </li>
+                        <li onClick={() => setRatingFilter(4)} className='list-none mt-3 flex items-center cursor-pointer'>
+                          <input type='checkbox' className='me-2 cursor-pointer' /> <span className="text-[15px]">4 and more</span>
+                        </li>
+                        <li onClick={() => setRatingFilter(5)} className='list-none mt-3 flex items-center cursor-pointer'>
+                          <input type='checkbox' className='me-2 cursor-pointer' /> <span className="text-[15px]">5 and more</span>
+                        </li>
+                      </div>
+                    </div>
                   </div>
                 </div>
-
               </div>
-            </div>
 
           </div>
         </div>
 
-        <div className='flex   pt-5'>
-          <div className='md:inline hidden w-[30%] me-[40px]'>
+        <div className='grid grid-cols-1 md:grid-cols-[250px_1fr] gap-8 pt-5'>
+          <div className='hidden md:block pr-6 border-r border-gray-200'>
 
             <div className='py-5 border-b-[1px] border-[#ccc]'>
               <h2 id='1' onClick={() => setCategorie(1 == categorie ? 0 : 1)} className='relative font-semibold cursor-pointer'>Categories <span className='absolute right-2 bottom-0 text-gray-500'> {1 == categorie ? <FaMinus /> : <FaPlus />} </span> </h2>
@@ -485,7 +470,7 @@ console.log(selectCategory);
 
                 <Loading />
                 :
-                <div className=' grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-[80px] mt-5 mb-6 '>
+                <div className=' grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 md:gap-8 mt-5 mb-6 '>
 
                   {
                     products.length >= 1 ?
@@ -576,7 +561,7 @@ let Items = ({ data }) => {
   console.log(cart);
 
   return (
-    <div className='bg-white w-72 mx-auto rounded-[10px] h-auto shadow-md hover:shadow-2xl duration-500 hover:scale-105 p-4' >
+    <div className='bg-white w-full max-w-[290px] mx-auto rounded-[10px] h-auto shadow-md hover:shadow-2xl transition-all duration-300 hover:scale-[1.03] p-4 flex flex-col justify-between' >
       <img src={image} alt="" className='w-full  object-contain' />
       <p className='text-body mt-2'>{category_name}</p>
       <h3 className='text-[18px] font-bold mt-2'>{name}</h3>

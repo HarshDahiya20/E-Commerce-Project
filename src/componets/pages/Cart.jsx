@@ -119,33 +119,35 @@ function Cartrow({data}) {
         ))
     }
     return (
-        <div className='border-1 border-[#ccc] rounded-[15px] p-6 w-full h-fit bg-[#1E2939] mb-6'>
-            <div className='flex gap-8  items-center justify-between'>
-                <div className=' bg-white'>
-                    <img src={data.image} className='w-20' alt="" />
-                </div>
+        <div className='border border-[#2d3748] rounded-[15px] p-5 w-full h-fit bg-[#1E2939] mb-6 shadow-sm'>
+            <div className='flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between'>
+                <div className='flex items-center gap-5 w-full sm:w-auto'>
+                    <div className='bg-white p-1.5 rounded-lg flex-shrink-0 w-20 h-20 flex items-center justify-center border border-[#2d3748]'>
+                        <img src={data.image} className='max-h-full max-w-full object-contain' alt="" />
+                    </div>
 
-                <div className='w-full'>
-                    <h2 className='text-white font-bold mb-3 hover:underline'>{data.name}</h2>
-                   
-                    <h3 className='text-white mb-3'>Rs.{data.price}</h3>
-                    <div className='flex gap-5'>
-                        <button className='text-gray-400 flex items-center gap-2 hover:text-white'> <FaRegHeart /> Add to Favorites</button>
+                    <div className='w-full'>
+                        <h2 className='text-white font-bold mb-1.5 hover:underline text-[15px] leading-snug'>{data.name}</h2>
+                       
+                        <h3 className='text-gray-300 mb-1.5 text-sm font-medium'>Rs. {data.price}</h3>
+                        <div className='flex flex-wrap gap-4 text-xs'>
+                            <button className='text-gray-400 flex items-center gap-1 hover:text-white cursor-pointer transition-colors'> <FaRegHeart /> Add to Favorites</button>
 
-                        <button onClick={removeCart} className='text-red-600 font-bold flex items-center gap-2'><RxCross2 /> Remove </button>
+                            <button onClick={removeCart} className='text-red-500 font-bold flex items-center gap-1 hover:text-red-400 cursor-pointer transition-colors'><RxCross2 /> Remove </button>
+                        </div>
                     </div>
                 </div>
 
-                <div className='flex '>
-                    <div className='flex text-white'>
-                        <button onClick={()=>minQty(data.id)} className=' p-[2px] items-center border-1 border-[#ccc] rounded-[5px]'><LuMinus /></button>
+                <div className='flex items-center justify-between w-full sm:w-auto sm:gap-6 pt-3 sm:pt-0 border-t border-[#2d3748] sm:border-0'>
+                    <div className='flex items-center text-white bg-[#101828]/40 px-2 py-1 rounded-md border border-[#2d3748]'>
+                        <button onClick={()=>minQty(data.id)} className='p-0.5 items-center hover:bg-gray-700 rounded transition-colors cursor-pointer'><LuMinus /></button>
 
-                        <span className='px-3'>{data.qty}</span>
+                        <span className='px-3 font-semibold text-sm'>{data.qty}</span>
 
-                        <button onClick={()=>plusQty(data.id)} className=' p-[2px] items-center border-1 border-[#ccc] rounded-[5px]'><MdAdd /></button>
+                        <button onClick={()=>plusQty(data.id)} className='p-0.5 items-center hover:bg-gray-700 rounded transition-colors cursor-pointer'><MdAdd /></button>
                     </div>
 
-                    <div className='text-white md:w-32 font-bold text-end'>
+                    <div className='text-white font-bold text-base min-w-[90px] text-end'>
                         Rs. {data.qty*data.price}
                     </div>
                 </div>
